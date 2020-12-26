@@ -19,7 +19,7 @@ virtual dom - javascript objects that describes our app
 state changed, combine new state and components we have and render the dom. Whenever state changes rerender components
 
 # Key decisions:
-1. Decide on components
+1. Decide on components - make it small enough so they can be reused elsewhere
 2. Decide on state and where it lives
 3. What changes when state changes
 
@@ -39,11 +39,17 @@ npm install package --save == yarn add package
 react-scripts build - this reads react code from `src` directory and compiles to older javascript (see babel and webpack) and puts them under `public` directory
 react-scripts eject - remove webpack and babel in case we want to manage them ourselves (not recommended)
 
-Components:
-Functional vs Class
-- Functional
+## Props
+https://www.w3schools.com/react/react_props.asp
 
-React Hook useState was introduced to allow developers to write stateful functional components. 
+## Components:
+Functional vs Class
+- Functional Components
+    - Unlike Class components, they do not have access to state or dont have lifecycle methods
+    - Not all the time we need to have state or need lifecycle methods, just rendering html is enough
+    - Functional component just gets some props and renders some html
+
+`React Hook` useState was introduced to allow developers to write stateful functional components. 
 ``` javascript
 import React from "react";
 
@@ -85,3 +91,6 @@ Component lifecycle
 componentDidMount() - called once component is rendered
 
 Promises
+
+## State vs Props
+State generally lives in one location and it trickles down to related components as props. (unidirectional data flow)
