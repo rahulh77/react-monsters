@@ -5,12 +5,13 @@ import './components/card-lists/card-list.styles.css';
 import SearchBox from './components/search-box/search-box'
 
 class App extends Component{
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       mystring: 'Hello Rahul',
       monsters: [],
-      searchField: ''
+      searchField: '',
+      meaningOfLife: 47
     }
   }
 
@@ -25,6 +26,12 @@ class App extends Component{
       console.log(this.state.searchField))
   }
 
+  asyncStateChange = () => {
+    this.setState((prevState, prevProps) => {
+     return {meaningOfLife: prevState.meaningOfLife + prevProps.increment}
+    }, () => console.log(this.state.meaningOfLife))
+  }
+
   render() {
     const { searchField, monsters } = this.state;
     const filteredMonsters = monsters.filter(x => x.name.toLowerCase().includes(searchField.toLowerCase()) );
@@ -32,8 +39,10 @@ class App extends Component{
       <div className="App">
           <h1>React Monsters</h1>
           <SearchBox className="search" placeholder='Search monsters' changeHandler={this.handleChange} />
-          <CardList myprop='rahulprop' monsters={filteredMonsters}>
-          </CardList>
+
+          <button onClick={this.asyncStateChange}>Async State</button>
+
+          <CardList myprop='rahulprop' monsters={filteredMonsters}></CardList>
           <p>{this.state.mystring}</p>
           {/* Anonymous function calling this.setstate() */}
           <button onClick={() => this.setState({mystring: 'Hi Rahul'})}>Click Me</button>

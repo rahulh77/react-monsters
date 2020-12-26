@@ -14,9 +14,12 @@ State
 component - classes or functions that return jsx
 props
 jsx
-virtual dom - javascript objects that describes our app
+virtual dom - javascript objects that describes our app. React creates a new dom called virtual dom with the updated component. Then it compares the real dom with virtual dom and just updates the real dom component that needs a change.
 
 state changed, combine new state and components we have and render the dom. Whenever state changes rerender components
+
+# Javascript keywords
+Callbacks
 
 # Key decisions:
 1. Decide on components - make it small enough so they can be reused elsewhere
